@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportsComparer", "ReportsComparer\ReportsComparer.csproj", "{B0F3F735-D489-4AA7-AF0B-C6EA83357439}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B0F3F735-D489-4AA7-AF0B-C6EA83357439}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0F3F735-D489-4AA7-AF0B-C6EA83357439}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0F3F735-D489-4AA7-AF0B-C6EA83357439}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0F3F735-D489-4AA7-AF0B-C6EA83357439}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
