@@ -1,9 +1,9 @@
-﻿using ReportsComparer.Data;
+﻿using ReportsComparer.ReportViewFiles;
 
 namespace ReportsComparer.ReportStructure
 {
     public interface IReport
     {
-        TimeSeries Latency { get; set; }
+        public ReportView View { get; set; }
     }
 }
