@@ -27,7 +27,15 @@ namespace ReportsComparer
         
         private Text[] GetTextsCompared(Text[] baseReportText, Text[] newReportText)
         {
-            throw new NotImplementedException();
+            return baseReportText
+                .Join(
+                    newReportText,
+                    repBase => repBase.Name,
+                    repNew => repNew.Name,
+                    (first, second) => 
+                        new {first.Name, FirstValue = int.Parse(first.Value), SecondValue = int.Parse(second.Value)})
+                .Select(x => new Text {Name = x.Name, Value = (((x.SecondValue - x.FirstValue) / x.FirstValue) * 100).ToString()})
+                .ToArray();
         }
 
         private Table[] GetTablesCompared(Table[] baseReportTables, Table[] newReportTables)
