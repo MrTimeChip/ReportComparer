@@ -4,6 +4,6 @@ namespace ReportsComparer.ReportStructure
 {
     public interface IReport
     {
-        public ReportView View { get; set; }
+        public ReportView View { get; }
     }
 }
