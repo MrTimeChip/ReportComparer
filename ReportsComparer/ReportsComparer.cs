@@ -97,7 +97,60 @@ namespace ReportsComparer
 
         private Chart[] GetChartsCumsum(Chart[] baseReportChart, Chart[] newReportChart)
         {
-            throw new NotImplementedException();
+            return baseReportChart
+                .Join(
+                    newReportChart,
+                    repBase => repBase.Name,
+                    repNew => repNew.Name,
+                    (first, second) => 
+                        new
+                        {
+                            first.Name, 
+                            first.ValueType,
+                            FirstGraphs = first.Graphs, 
+                            SecondGraphs = second.Graphs
+                        })
+                .Select(x => new Chart
+                {
+                    Name = x.Name, 
+                    ValueType = x.ValueType, 
+                    Graphs = GetGraphsCumsum(x.FirstGraphs, x.SecondGraphs)
+                })
+                .ToArray();
+        }
+
+        private Graph[] GetGraphsCumsum(Graph[] baseReportGraphs, Graph[] newReportGraphs)
+        {
+            return baseReportGraphs
+                .Join(
+                    newReportGraphs,
+                    repBase => repBase.Name,
+                    repNew => repNew.Name,
+                    (first, second) => 
+                        new {first.Name, first.Options, FirstPoints = first.Points, SecondPoints = second.Points})
+                .Select(x => new Graph
+                {
+                    Name = x.Name, 
+                    Options = x.Options,
+                    Points = GetGraphCumsum(x.FirstPoints, x.SecondPoints)
+                })
+                .ToArray();
+        }
+
+        private IEnumerable<DataPoint> GetGraphCumsum(IEnumerable<DataPoint> baseReportGraph, IEnumerable<DataPoint> newReportGraph)
+        {
+            var result = new List<DataPoint>();
+            var zipped = baseReportGraph
+                .Zip(newReportGraph)
+                .Select(x => (x.First.Timestamp, Math.Abs(x.First.Data - x.Second.Data)))
+                .Aggregate((x, y) =>
+                {
+                    var acc = x.Item2 + y.Item2;
+                    result.Add(new DataPoint(x.Timestamp, acc));
+                    return (y.Timestamp, acc);
+                });
+
+            return result;
         }
 
         private Text[] GetTextFromOutliersData(IReport baseReport, IReport newReport)
