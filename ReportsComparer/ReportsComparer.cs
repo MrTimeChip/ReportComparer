@@ -23,7 +23,7 @@ namespace ReportsComparer
 
             var newView = new ReportView {Texts = fullTexts, Tables = tablesCompared, Charts = responseTimeCumsum};
 
-            return new Report(new ReportView());
+            return new Report(newView);
         }
         
         private Text[] GetTextsCompared(Text[] baseReportText, Text[] newReportText)
