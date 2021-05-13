@@ -1,7 +1,6 @@
 ﻿using System;
 using ReportsComparer.ReportStructure;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using ReportsComparer.ReportViewFiles;
 
@@ -26,7 +25,7 @@ namespace ReportsComparer
             return new Report(newView);
         }
         
-        private Text[] GetTextsCompared(Text[] baseReportText, Text[] newReportText)
+        public Text[] GetTextsCompared(Text[] baseReportText, Text[] newReportText)
         {
             return baseReportText
                 .Join(
@@ -39,7 +38,7 @@ namespace ReportsComparer
                 .ToArray();
         }
 
-        private Table[] GetTablesCompared(Table[] baseReportTables, Table[] newReportTables)
+        public Table[] GetTablesCompared(Table[] baseReportTables, Table[] newReportTables)
         {
             return baseReportTables
                 .Join(
@@ -65,7 +64,7 @@ namespace ReportsComparer
                 .ToArray();
         }
 
-        private string[][] GetMatricesCompared(string[][] first, string[][] second)
+        public string[][] GetMatricesCompared(string[][] first, string[][] second)
         {
             var columnsCount = first.Length;
             var rowsCount = first[0].Length;
@@ -95,7 +94,7 @@ namespace ReportsComparer
             return result;
         }
 
-        private Chart[] GetChartsCumsum(Chart[] baseReportChart, Chart[] newReportChart)
+        public Chart[] GetChartsCumsum(Chart[] baseReportChart, Chart[] newReportChart)
         {
             return baseReportChart
                 .Join(
@@ -119,7 +118,7 @@ namespace ReportsComparer
                 .ToArray();
         }
 
-        private Graph[] GetGraphsCumsum(Graph[] baseReportGraphs, Graph[] newReportGraphs)
+        public Graph[] GetGraphsCumsum(Graph[] baseReportGraphs, Graph[] newReportGraphs)
         {
             return baseReportGraphs
                 .Join(
@@ -137,7 +136,7 @@ namespace ReportsComparer
                 .ToArray();
         }
 
-        private IEnumerable<DataPoint> GetGraphCumsum(IEnumerable<DataPoint> baseReportGraph, IEnumerable<DataPoint> newReportGraph)
+        public IEnumerable<DataPoint> GetGraphCumsum(IEnumerable<DataPoint> baseReportGraph, IEnumerable<DataPoint> newReportGraph)
         {
             var result = new List<DataPoint>();
             var zipped = baseReportGraph
