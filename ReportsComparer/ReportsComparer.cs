@@ -50,8 +50,11 @@ namespace ReportsComparer
 
         public static string CompareValues(string firstValue, string secondValue)
         {
-            var first = float.Parse(firstValue, CultureInfo.InvariantCulture.NumberFormat);
-            var second = float.Parse(secondValue, CultureInfo.InvariantCulture.NumberFormat);
+            if (!float.TryParse(firstValue, out var first))
+                return "";
+
+            if (!float.TryParse(secondValue, out var second))
+                return "";
 
             var percents = first == 0 ? 0 : (second - first) / first * 100;
             var byCount = second - first;
