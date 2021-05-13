@@ -37,15 +37,28 @@ namespace ReportsComparer
                         new 
                         {
                             first.Name, 
-                            FirstValue = float.Parse(first.Value, CultureInfo.InvariantCulture.NumberFormat), 
-                            SecondValue = float.Parse(second.Value, CultureInfo.InvariantCulture.NumberFormat)
+                            FirstValue = first.Value, 
+                            SecondValue = first.Value
                         })
                 .Select(x => new Text
                 {
                     Name = x.Name, 
-                    Value = (((x.SecondValue - x.FirstValue) / x.FirstValue) * 100).ToString(CultureInfo.InvariantCulture.NumberFormat)
+                    Value = CompareValues(x.FirstValue, x.SecondValue)
                 })
                 .ToArray();
+        }
+
+        private static string CompareValues(string firstValue, string secondValue)
+        {
+            var first = float.Parse(firstValue, CultureInfo.InvariantCulture.NumberFormat);
+            var second = float.Parse(secondValue, CultureInfo.InvariantCulture.NumberFormat);
+
+            var percents = first == 0 ? 0 : (second - first) / first * 100;
+            var byCount = second - first;
+
+            var sign = byCount > 0 ? "+" : "-";
+
+            return $"{sign}{byCount}({percents}%)";
         }
 
         public static Table[] GetTablesCompared(Table[] baseReportTables, Table[] newReportTables)
@@ -90,14 +103,9 @@ namespace ReportsComparer
                     var firstElement = first[i][j];
                     var secondElement = second[i][j];
 
-                    var firstParsed = float.Parse(firstElement, CultureInfo.InvariantCulture.NumberFormat);
-                    var secondParsed = float.Parse(secondElement, CultureInfo.InvariantCulture.NumberFormat);
+                    var compared = CompareValues(firstElement, secondElement);
 
-                    var value = (secondParsed - firstParsed) / secondParsed * 100;
-
-                    var valueParsed = value.ToString(CultureInfo.InvariantCulture.NumberFormat);
-
-                    result[i][j] = valueParsed;
+                    result[i][j] = compared;
                 }
             }
 
