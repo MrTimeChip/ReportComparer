@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportsComparer", "ReportsComparer\ReportsComparer.csproj", "{B0F3F735-D489-4AA7-AF0B-C6EA83357439}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestReportsComparer", "TestReportsComparer\TestReportsComparer.csproj", "{BAB32F71-6514-4ED0-8948-1AFD29669257}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{B0F3F735-D489-4AA7-AF0B-C6EA83357439}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0F3F735-D489-4AA7-AF0B-C6EA83357439}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0F3F735-D489-4AA7-AF0B-C6EA83357439}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAB32F71-6514-4ED0-8948-1AFD29669257}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAB32F71-6514-4ED0-8948-1AFD29669257}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAB32F71-6514-4ED0-8948-1AFD29669257}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAB32F71-6514-4ED0-8948-1AFD29669257}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
