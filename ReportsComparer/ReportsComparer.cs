@@ -38,7 +38,7 @@ namespace ReportsComparer
                         {
                             first.Name, 
                             FirstValue = first.Value, 
-                            SecondValue = first.Value
+                            SecondValue = second.Value
                         })
                 .Select(x => new Text
                 {
