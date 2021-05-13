@@ -53,7 +53,7 @@ namespace ReportsComparer
             var first = float.Parse(firstValue, CultureInfo.InvariantCulture.NumberFormat);
             var second = float.Parse(secondValue, CultureInfo.InvariantCulture.NumberFormat);
 
-            var percents = first == 0 ? second : (second - first) / first * 100;
+            var percents = first == 0 ? 0 : (second - first) / first * 100;
             var byCount = second - first;
 
             var sign = byCount > 0 ? "+" : "";
