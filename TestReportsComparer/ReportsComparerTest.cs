@@ -12,10 +12,11 @@ namespace TestReportsComparer
         {
         }
         
-        [TestCase("1", "2", ExpectedResult = "+1(100%)")]
-        [TestCase("2", "1", ExpectedResult = "-1(-50%)")]
-        [TestCase("0", "1", ExpectedResult = "+1(0%)")]
-        [TestCase("0", "0", ExpectedResult = "0(0%)")]
+        [TestCase("1", "2", ExpectedResult = "+1(100%)", TestName = "int values first is greater")]
+        [TestCase("2", "1", ExpectedResult = "-1(-50%)", TestName = "int values second is greater")]
+        [TestCase("0", "1", ExpectedResult = "+1(0%)", TestName = "int values first is zero")]
+        [TestCase("0", "0", ExpectedResult = "0(0%)", TestName = "int values both are zero")]
+        [TestCase("100", "100", ExpectedResult = "0(0%)", TestName = "int values both are equal")]
         public string CompareValues(string first, string second)
         {
             return ReportsComparer.ReportsComparer.CompareValues(first, second);
