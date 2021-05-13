@@ -56,7 +56,7 @@ namespace ReportsComparer
             var percents = first == 0 ? 0 : (second - first) / first * 100;
             var byCount = second - first;
 
-            var sign = byCount > 0 ? "+" : "-";
+            var sign = byCount > 0 ? "+" : "";
 
             return $"{sign}{byCount}({percents}%)";
         }
