@@ -1,6 +1,7 @@
 ﻿using System;
 using ReportsComparer.ReportStructure;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using ReportsComparer.ReportViewFiles;
 
@@ -33,7 +34,12 @@ namespace ReportsComparer
                     repBase => repBase.Name,
                     repNew => repNew.Name,
                     (first, second) => 
-                        new {first.Name, FirstValue = int.Parse(first.Value), SecondValue = int.Parse(second.Value)})
+                        new 
+                        {
+                            first.Name, 
+                            FirstValue = float.Parse(first.Value, CultureInfo.InvariantCulture.NumberFormat), 
+                            SecondValue = float.Parse(second.Value, CultureInfo.InvariantCulture.NumberFormat)
+                        })
                 .Select(x => new Text {Name = x.Name, Value = (((x.SecondValue - x.FirstValue) / x.FirstValue) * 100).ToString()})
                 .ToArray();
         }
