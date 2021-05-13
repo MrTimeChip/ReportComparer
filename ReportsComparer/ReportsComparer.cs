@@ -6,9 +6,9 @@ using ReportsComparer.ReportViewFiles;
 
 namespace ReportsComparer
 {
-    public class ReportsComparer
+    public static class ReportsComparer
     {
-        public IReport GetComparativeReport(IReport baseReport, IReport newReport)
+        public static IReport GetComparativeReport(IReport baseReport, IReport newReport)
         {
             var textsCompared = GetTextsCompared(baseReport.View.Texts, newReport.View.Texts);
             
@@ -25,7 +25,7 @@ namespace ReportsComparer
             return new Report(newView);
         }
         
-        public Text[] GetTextsCompared(Text[] baseReportText, Text[] newReportText)
+        public static Text[] GetTextsCompared(Text[] baseReportText, Text[] newReportText)
         {
             return baseReportText
                 .Join(
@@ -38,7 +38,7 @@ namespace ReportsComparer
                 .ToArray();
         }
 
-        public Table[] GetTablesCompared(Table[] baseReportTables, Table[] newReportTables)
+        public static Table[] GetTablesCompared(Table[] baseReportTables, Table[] newReportTables)
         {
             return baseReportTables
                 .Join(
@@ -64,7 +64,7 @@ namespace ReportsComparer
                 .ToArray();
         }
 
-        public string[][] GetMatricesCompared(string[][] first, string[][] second)
+        public static string[][] GetMatricesCompared(string[][] first, string[][] second)
         {
             var columnsCount = first.Length;
             var rowsCount = first[0].Length;
@@ -94,7 +94,7 @@ namespace ReportsComparer
             return result;
         }
 
-        public Chart[] GetChartsCumsum(Chart[] baseReportChart, Chart[] newReportChart)
+        public static Chart[] GetChartsCumsum(Chart[] baseReportChart, Chart[] newReportChart)
         {
             return baseReportChart
                 .Join(
@@ -118,7 +118,7 @@ namespace ReportsComparer
                 .ToArray();
         }
 
-        public Graph[] GetGraphsCumsum(Graph[] baseReportGraphs, Graph[] newReportGraphs)
+        public static Graph[] GetGraphsCumsum(Graph[] baseReportGraphs, Graph[] newReportGraphs)
         {
             return baseReportGraphs
                 .Join(
@@ -136,7 +136,7 @@ namespace ReportsComparer
                 .ToArray();
         }
 
-        public IEnumerable<DataPoint> GetGraphCumsum(IEnumerable<DataPoint> baseReportGraph, IEnumerable<DataPoint> newReportGraph)
+        public static IEnumerable<DataPoint> GetGraphCumsum(IEnumerable<DataPoint> baseReportGraph, IEnumerable<DataPoint> newReportGraph)
         {
             var result = new List<DataPoint>();
             var zipped = baseReportGraph
@@ -152,7 +152,7 @@ namespace ReportsComparer
             return result;
         }
 
-        private Text[] GetTextFromOutliersData(IReport baseReport, IReport newReport)
+        private static Text[] GetTextFromOutliersData(IReport baseReport, IReport newReport)
         {
             throw new NotImplementedException();
         }
