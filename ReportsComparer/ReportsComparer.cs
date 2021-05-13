@@ -48,7 +48,7 @@ namespace ReportsComparer
                 .ToArray();
         }
 
-        private static string CompareValues(string firstValue, string secondValue)
+        public static string CompareValues(string firstValue, string secondValue)
         {
             var first = float.Parse(firstValue, CultureInfo.InvariantCulture.NumberFormat);
             var second = float.Parse(secondValue, CultureInfo.InvariantCulture.NumberFormat);
