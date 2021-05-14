@@ -162,13 +162,14 @@ namespace ReportsComparer
             var result = new List<DataPoint>();
             var zipped = baseReportGraph
                 .Zip(newReportGraph)
-                .Select(x => (x.First.Timestamp, Math.Abs(x.First.Data - x.Second.Data)))
-                .Aggregate((x, y) =>
-                {
-                    var acc = x.Item2 + y.Item2;
-                    result.Add(new DataPoint(x.Timestamp, acc));
-                    return (y.Timestamp, acc);
-                });
+                .Select(x => (x.First.Timestamp, Math.Abs(x.First.Data - x.Second.Data)));
+            var prev = 0.0;
+            foreach (var point in zipped)
+            {
+                var sum = prev + point.Item2;
+                result.Add(new DataPoint(point.Timestamp, sum));
+                prev = sum;
+            }
 
             return result;
         }
