@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using NUnit.Framework;
 using ReportsComparer;
@@ -297,6 +298,35 @@ namespace TestReportsComparer
             Assert.AreEqual(actualTableSecond.Columns, expectedTableSecond.Columns);
             Assert.AreEqual(actualTableSecond.Name, expectedTableSecond.Name);
             Assert.AreEqual(actualTableSecond.Rows, expectedTableSecond.Rows);
+        }
+        
+        [Test]
+        public void Test_GetGraphCumsum_CorrectValues()
+        {
+            var baseGraph = new []
+            {
+                new DataPoint(1, 1), 
+                new DataPoint(2, 1), 
+                new DataPoint(3, 1)
+            };
+            
+            var newGraph = new []
+            {
+                new DataPoint(1, 2), 
+                new DataPoint(2, 2), 
+                new DataPoint(3, 2)
+            };
+
+            var expected = new[]
+            {
+                new DataPoint(1, 1), 
+                new DataPoint(2, 2),
+                new DataPoint(3, 3)
+            };
+
+            var actual = ReportsComparer.ReportsComparer.GetGraphCumsum(baseGraph, newGraph);
+
+            Assert.AreEqual(expected, actual);
         }
     }
 }
