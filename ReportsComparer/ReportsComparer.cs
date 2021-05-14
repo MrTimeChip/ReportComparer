@@ -1,7 +1,6 @@
 ﻿using System;
 using ReportsComparer.ReportStructure;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using ReportsComparer.ReportViewFiles;
 
@@ -176,7 +175,7 @@ namespace ReportsComparer
 
         private static Text[] GetTextFromOutliersData(IReport baseReport, IReport newReport)
         {
-            throw new NotImplementedException();
+            return Array.Empty<Text>();
         }
     }
 }
