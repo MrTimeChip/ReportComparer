@@ -80,5 +80,33 @@ namespace TestReportsComparer
             
             Assert.AreEqual(expected, actual);
         }
+        
+        [Test]
+        public void GetMatricesCompared_CorrectIntValues()
+        {
+            var baseMatrix = new [] {new [] {"Row1", "10", "20"}, new [] {"Row2", "30", "100"}};
+            
+            var newMatrix = new [] {new [] {"Row1", "20", "10"}, new [] {"Row2", "10", "200"}};
+
+            var expected = new[]
+            {
+                new[]
+                {
+                    "Row1",
+                    ReportsComparer.ReportsComparer.CompareValues("10", "20"),
+                    ReportsComparer.ReportsComparer.CompareValues("20", "10")
+                },
+                new[]
+                {
+                    "Row2",
+                    ReportsComparer.ReportsComparer.CompareValues("30", "10"),
+                    ReportsComparer.ReportsComparer.CompareValues("100", "200")
+                }
+            };
+
+            var actual = ReportsComparer.ReportsComparer.GetMatricesCompared(baseMatrix, newMatrix);
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
